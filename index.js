@@ -16,6 +16,9 @@ app.engine(
 app.set("view engine", "handlebars");
 app.set("views", __dirname + "/views");
 
+// serve static files
+app.use("/static", express.static("public"));
+
 app.listen(PORT, (error) => {
   if (!error)
     console.log(
