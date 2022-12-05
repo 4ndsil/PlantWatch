@@ -1,10 +1,13 @@
+require("dotenv").config();
 const express = require("express");
 const { engine } = require("express-handlebars");
 
 const app = express();
 const PORT = 3000;
 
-app.use("/api", require("./server/routes/plantApi"));
+// routes
+app.use("/api/houseplant", require("./server/routes/plantApi"));
+
 // handlebars engine, set partails directory
 app.engine(
   "handlebars",
