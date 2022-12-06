@@ -6,7 +6,7 @@ const app = express();
 const PORT = 3000;
 
 // routes
-app.use("/api/houseplant", require("./server/routes/houseplant"));
+app.use("/api/db", require("./server/routes/db"));
 
 // handlebars engine, set partails directory
 app.engine(

@@ -1,4 +1,5 @@
 const axios = require("axios");
+const router = require("../routes/db");
 
 const BASE_URL = "https://house-plants2.p.rapidapi.com/";
 const HEADERS = {
@@ -33,7 +34,4 @@ const getPlantById = async (id) => {
     });
 };
 
-module.exports = {
-  getAllPlants,
-  getPlantById,
-};
+module.exports = router;
