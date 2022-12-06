@@ -1,0 +1,33 @@
+<!-- 
+e.g:
+plant: {
+  info: { light: "10 lux", "Latin name": "name" },
+  img: "http://www.tropicopia.com/house-plant/thumbnails/5496.jpg",
+}
+-->
+
+<div class="card">
+  <div class="card-body">
+    <h6 class="card-subtitle mb-2 text-muted">
+      <i class="bi bi-flower2"></i>
+      Plant Information
+    </h6>
+    <center>
+      <img src="{{plant.img}}" />
+    </center>
+    <table class="table table-hover">
+      <tbody id="plantinfo-table">
+        {{#each plant.info}}
+        <tr>
+          <th scope="row">
+            {{@key}}
+          </th>
+          <td>
+            {{this}}
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>
