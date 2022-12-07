@@ -12,34 +12,8 @@
       {{> card-plantinfo }}
     </div>
     <div class="col-7">
-      <div class="card">
-        <div class="card-body">
-          <div style="display:table;width:100%;height:30px">
-            <div style="width: 30%;display:table-cell;">
-              <h6 class="card-subtitle mb-2 text-muted">
-                <i class="bi bi-graph-up"></i>
-                Chart
-              </h6>
-            </div>
-            <div style="width: 30%;display:table-cell;text-align:end">
-              <div id="chart-btn-group" class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-                <label class="btn btn-outline-primary btn-sm chart-toggle-lable" for="btnradio1"
-                  value="light">Light</label>
-
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                <label class="btn btn-outline-primary btn-sm chart-toggle-lable" for="btnradio2"
-                  value="moisture">Moisture</label>
-              </div>
-            </div>
-          </div>
-          <canvas id="light-chart"></canvas>
-          <canvas id="moisture-chart" style="display:none;"></canvas>
-        </div>
-      </div>
+      {{> card-charts }}
       {{> card-info title="Insights" icon="bi bi-clipboard-data" cid="card-insights"}}
     </div>
   </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.0.1/dist/chart.umd.min.js"></script>
-<script src="static/js/charts.js"></script>

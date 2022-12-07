@@ -1,0 +1,149 @@
+<div class="card">
+  <div class="card-body">
+    <div style="display:table;width:100%;height:30px">
+      <div style="width: 30%;display:table-cell;">
+        <h6 class="card-subtitle mb-2 text-muted">
+          <i class="bi bi-graph-up"></i>
+          Chart
+          <div
+            class="spinner-border spinner-border-sm text-primary"
+            role="status"
+            id="charts-spinner"
+          >
+          </div>
+        </h6>
+      </div>
+      <div style="width: 30%;display:table-cell;text-align:end">
+        <div
+          id="chart-btn-group"
+          class="btn-group"
+          role="group"
+          aria-label="Basic radio toggle button group"
+        >
+          <input
+            type="radio"
+            class="btn-check"
+            name="btnradio"
+            id="btnradio1"
+            autocomplete="off"
+            checked
+          />
+          <label
+            class="btn btn-outline-primary btn-sm chart-toggle-lable"
+            for="btnradio1"
+            value="light"
+          >
+            Light
+          </label>
+
+          <input
+            type="radio"
+            class="btn-check"
+            name="btnradio"
+            id="btnradio2"
+            autocomplete="off"
+          />
+          <label
+            class="btn btn-outline-primary btn-sm chart-toggle-lable"
+            for="btnradio2"
+            value="moisture"
+          >
+            Moisture
+          </label>
+        </div>
+      </div>
+    </div>
+    <canvas id="light-chart"></canvas>
+    <canvas id="moisture-chart" style="display:none;"></canvas>
+  </div>
+</div>
+
+<script
+  src="https://cdn.jsdelivr.net/npm/chart.js@4.0.1/dist/chart.umd.min.js"
+></script>
+
+<script>
+  // set up eventlisteners
+	let radioLables = document.getElementsByClassName("chart-toggle-lable");
+	radioLables[0].addEventListener("click", (e) => {
+		lightChartElement.style.display = "block";
+		moistureChartElement.style.display = "none";
+	});
+	radioLables[1].addEventListener("click", (e) => {
+		moistureChartElement.style.display = "block";
+		lightChartElement.style.display = "none";
+	});
+
+	// create charts
+	let lightChartElement = document.getElementById("light-chart");
+	let moistureChartElement = document.getElementById("moisture-chart");
+	
+	fetch("/api/db/lux").then(r => r.json()).then(res => {
+		if(res.success){
+			const lux = res.data.map(({lux}) => lux)
+			const dates = res.data.map(({Date}) => Date)
+
+			new Chart(lightChartElement.getContext("2d"), {
+				type: "line",
+				data: {
+					labels: dates,
+					datasets: [
+						{
+							label: "",
+							data: lux,
+							backgroundColor: "rgba(0, 150, 242, 0.1)",
+							borderColor: "#0d6efd",
+							BorderRadius: 10,
+							pointStyle: "circle",
+							pointRadius: 3,
+						},
+					],
+				},
+				options: {
+					plugins: {
+						legend: {
+							align: "end",
+						},
+					},
+				},
+			});
+		}
+		document.getElementById("charts-spinner").remove()
+	})
+
+	fetch("/api/db/moisture").then(r => r.json()).then(res => {
+		if(res.success){
+			const moisture = res.data.map(({moisture}) => moisture)
+			const dates = res.data.map(({Date}) => Date)
+			
+			new Chart(moistureChartElement.getContext("2d"), {
+				type: "line",
+				data: {
+					labels: dates,
+					datasets: [
+						{
+							label: "",
+							data: moisture,
+							backgroundColor: "rgba(0, 150, 242, 0.1)",
+							borderColor: "#0d6efd",
+							BorderRadius: 10,
+							fill: {
+								target: "origin",
+								above: "rgba(0, 150, 242, 0.2)",
+							},
+							pointStyle: "circle",
+							pointRadius: 3,
+						},
+					],
+				},
+				options: {
+					plugins: {
+						legend: {
+							align: "end",
+						},
+					},
+				},
+			});
+		}
+	})
+</script>
