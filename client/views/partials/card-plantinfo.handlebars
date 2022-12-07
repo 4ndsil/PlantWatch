@@ -1,11 +1,3 @@
-<!-- 
-e.g:
-plant: {
-  info: { light: "10 lux", "Latin name": "name" },
-  img: "http://www.tropicopia.com/house-plant/thumbnails/5496.jpg",
-}
--->
-
 <div class="card">
   <div class="card-body">
     <h6 class="card-subtitle mb-2 text-muted">
@@ -13,21 +5,37 @@ plant: {
       Plant Information
     </h6>
     <center>
-      <img src="{{plant.img}}" />
+      <img id="plantinfo-img" />
+      <div class="spinner-border" role="status" id="plantinfo-spinner">
+      </div>
     </center>
     <table class="table table-hover">
       <tbody id="plantinfo-table">
-        {{#each plant.info}}
-        <tr>
-          <th scope="row">
-            {{@key}}
-          </th>
-          <td>
-            {{this}}
-          </td>
-        </tr>
-        {{/each}}
       </tbody>
     </table>
   </div>
 </div>
+
+<script>
+  fetch("/api/houseplant/id").then(res => res.json())
+  .then(({img, ...info}) => {
+    document.getElementById("plantinfo-img").src = img
+    const tbody = document.getElementById("plantinfo-table")
+
+    for(const [key, value] of Object.entries(info)){
+      let tr = document.createElement("tr")
+      let th = document.createElement("th")
+      let td = document.createElement("td")
+
+      tbody.appendChild(tr)
+      tr.appendChild(th)
+      tr.appendChild(td)
+
+      th.innerText = key
+      td.innerText = value
+    }
+  document.getElementById("plantinfo-spinner").remove()
+  }).catch(error => {
+    console.error(error)
+  })
+</script>
