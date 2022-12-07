@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
-router.get("/verify", async (req, res) => {
-    var id = req.cookie.id;
+router.get("/", async (req, res) => {
+    var id = req.cookies.deviceId;
     if (id == null || id == ""){
         return res.redirect("../views/welcome")
     }
