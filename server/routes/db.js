@@ -11,9 +11,9 @@ const CONNECTION_STRING = process.env.MONGODB_CONNECTION_STRING;
 mongoose.connect(CONNECTION_STRING)
 
 //lux endpoints
-router.get("/lux/:id", async (req, res) => {
+router.get("/lux/", async (req, res) => {
     try {
-        const data = await lux.findById(req.params.id)
+        const data = await lux.find({deviceId: req.cookies.deviceId})
         res.status(200).json({
             success: true,
             data,
@@ -43,9 +43,9 @@ router.post("/lux", async (req, res) => {
 });
 
 //moisture endpoints
-router.get("/moisture/:id", async (req, res) => {
+router.get("/moisture/", async (req, res) => {
     try {
-        const data = await moisture.findById(req.params.id)
+        const data = await moisture.find({deviceId: req.cookies.deviceId})
         res.status(200).json({
             success: true,
             data,
