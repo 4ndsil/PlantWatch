@@ -8,7 +8,10 @@ const PORT = 3000;
 
 //cookie config
 app.use(cookieParser());
-app.use("/cookie", require("./server/middleware/cookieVerifier"));
+
+app.use((req, res) => {
+  require(cookieVerifier());
+});
 
 // routes
 app.use("/api/db", require("./server/routes/db"));
