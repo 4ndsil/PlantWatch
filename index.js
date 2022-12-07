@@ -1,17 +1,19 @@
 require("dotenv").config();
 const express = require("express");
 const { engine } = require("express-handlebars");
-const cookieParser = require('cookie-parser');
+const cookieParser = require("cookie-parser");
 
 const app = express();
 const PORT = 3000;
 
 //cookie config
-app.use(cookieParser())
+app.use(cookieParser());
 app.use("/cookie", require("./server/middleware/cookieVerifier"));
 
 // routes
 app.use("/api/db", require("./server/routes/db"));
+app.use("/api/houseplant", require("./server/routes/houseplant"));
+app.use("/", require("./server/routes/views"));
 
 // handlebars engine, set partails directory
 app.engine(
