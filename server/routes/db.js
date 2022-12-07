@@ -1,10 +1,10 @@
 const express = require("express");
 const mongoose = require('mongoose');
+const router = express.Router();
 
 //db models
 const lux = require('../models/lux')
 const moisture = require('../models/moisture')
-const router = express.Router();
 
 const CONNECTION_STRING = process.env.MONGODB_CONNECTION_STRING;
 
