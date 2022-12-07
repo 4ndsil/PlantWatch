@@ -11,6 +11,7 @@ app.use(cookieParser());
 
 app.use((req, res) => {
   require(cookieVerifier());
+  next();
 });
 
 // routes
