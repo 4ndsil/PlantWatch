@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // api routes
-//app.use("/api/db", require("./server/routes/db"));
+app.use("/api/db", require("./server/routes/db"));
 app.use("/api/houseplant", require("./server/routes/houseplant"));
 
 // public routes
