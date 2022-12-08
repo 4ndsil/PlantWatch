@@ -9,6 +9,8 @@ const PORT = 3000;
 
 //cookie config
 app.use(cookieParser());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // api routes
 app.use("/api/db", require("./server/routes/db"));
@@ -20,7 +22,7 @@ app.use("/setup", require("./server/routes/setup"));
 // cookie validator
 app.use(cookieValidator);
 
-// protocted routes 
+// protocted routes
 app.use("/", require("./server/routes/views"));
 
 // handlebars engine, set partails directory
