@@ -13,7 +13,9 @@ mongoose.connect(CONNECTION_STRING)
 //lux endpoints
 router.get("/lux/", async (req, res) => {
     try {
-        const data = await lux.find({deviceId: req.cookies.deviceId})
+        const data = await lux.find({
+            deviceId: req.cookies.deviceId
+        })
         res.status(200).json({
             success: true,
             data,
@@ -27,8 +29,16 @@ router.get("/lux/", async (req, res) => {
 });
 
 router.post("/lux", async (req, res) => {
+    const {
+        lux,
+        deviceId
+    } = req.body
     try {
-        const data = await lux.create(req.body)
+        const data = await lux.create({
+            lux,
+            deviceId,
+            Date: Date()
+        })
         await data.save();
         res.status(201).json({
             success: true,
@@ -45,7 +55,9 @@ router.post("/lux", async (req, res) => {
 //moisture endpoints
 router.get("/moisture/", async (req, res) => {
     try {
-        const data = await moisture.find({deviceId: req.cookies.deviceId})
+        const data = await moisture.find({
+            deviceId: req.cookies.deviceId
+        })
         res.status(200).json({
             success: true,
             data,
@@ -59,8 +71,16 @@ router.get("/moisture/", async (req, res) => {
 });
 
 router.post("/moisture", async (req, res) => {
+    const {
+        moisture,
+        deviceId
+    } = req.body
     try {
-        const data = await moisture.create(req.body)
+        const data = await moisture.create({
+            moisture,
+            deviceId,
+            Date: Date()
+        })
         await data.save();
         res.status(201).json({
             success: true,
