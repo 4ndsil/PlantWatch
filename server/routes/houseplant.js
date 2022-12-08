@@ -8,12 +8,31 @@ const HEADERS = {
   "X-RapidAPI-Host": "house-plants2.p.rapidapi.com",
 };
 
+const fields = [
+  "img",
+  "Latin name",
+  "Common name",
+  "Family",
+  "Light ideal",
+  "Light tolered",
+  "Watering",
+  "id",
+];
+
 // gets all plants
 router.get("/", (req, res) => {
   axios
     .get(BASE_URL, { headers: HEADERS })
     .then((response) => {
-      res.json(response.data);
+      const data = response.data.map((plant) => {
+        return Object.keys(plant)
+          .filter((key) => fields.includes(key))
+          .reduce((obj, key) => {
+            obj[key] = plant[key];
+            return obj;
+          }, {});
+      });
+      res.json(data);
     })
     .catch((error) => {
       console.error(error);
@@ -24,17 +43,8 @@ router.get("/", (req, res) => {
 // get plant by id
 router.get("/id/", (req, res) => {
   axios
-    .get(`${BASE_URL}${req.cookies.plantID}`, { headers: HEADERS })
+    .get(`${BASE_URL}${req.cookies.plantId}`, { headers: HEADERS })
     .then((response) => {
-      const fields = [
-        "img",
-        "Latin name",
-        "Common name",
-        "Family",
-        "Light ideal",
-        "Light tolered",
-        "Watering",
-      ];
       const data = Object.keys(response.data)
         .filter((key) => fields.includes(key))
         .reduce((obj, key) => {
