@@ -12,12 +12,12 @@ app.use(cookieParser());
 
 // api routes
 app.use("/api/db", require("./server/routes/db"));
-app.use("/api/houseplant", require("./server/routes/houseplant"));app.use("")
+app.use("/api/houseplant", require("./server/routes/houseplant"));
 
 // public routes
 app.use("/setup", require("./server/routes/setup"));
 
-// cookievalidator
+// cookie validator
 app.use(cookieValidator);
 
 // protocted routes 
