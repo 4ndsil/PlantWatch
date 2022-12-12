@@ -7,7 +7,7 @@
             <center>
                 <form class="row g-3" id="welcome-form" action="/setup" method="POST">
                     <div class="mb-3">
-                        <select name="deviceId" id="select-device" name="plantId" class="form-control">
+                        <select name="deviceId" id="select-device" class="form-control">
                             <option value="device1">Device</option>
                         </select>
                     </div>
@@ -26,13 +26,13 @@
 <script>
     const plantSelect = document.getElementById("select-plant")
     const deviceInput = document.getElementById("select-device")
+    const wateringInput = document.getElementById("watering-input")
 
     fetch("/api/houseplant/").then(r => r.json()).then(res => {
         for (plant of res) {
             let option = document.createElement("option")
             option.value = plant.id
             option.innerText = plant["Common name"]
-
             plantSelect.appendChild(option)
         }
     })

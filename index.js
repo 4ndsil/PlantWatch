@@ -22,6 +22,11 @@ app.use("/setup", require("./server/routes/setup"));
 // cookie validator
 app.use(cookieValidator);
 
+// moisture validator
+
+// insight data route
+app.use("/insight", require("./server/routes/insight"))
+
 // protocted routes
 app.use("/", require("./server/routes/views"));
 

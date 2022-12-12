@@ -4,7 +4,7 @@ const router = express.Router();
 router.post("/", async (req, res, next) => {
   const {
     plantId,
-    deviceId
+    deviceId,
   } = req.body
   res.cookie('plantId', `${plantId}`, {
     maxAge: 900000,
@@ -14,7 +14,7 @@ router.post("/", async (req, res, next) => {
     maxAge: 900000,
     httpOnly: true
   });
-  res.render("dashboard");
+  res.render("dashboard");  
 });
 
 module.exports = router;
