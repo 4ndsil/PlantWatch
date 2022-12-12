@@ -12,6 +12,9 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// serve static files
+app.use("/static", express.static(__dirname + "/client/public"));
+
 // api routes
 app.use("/api/db", require("./server/routes/db"));
 app.use("/api/houseplant", require("./server/routes/houseplant"));
@@ -36,9 +39,6 @@ app.engine(
 // set view engine & directory
 app.set("view engine", "handlebars");
 app.set("views", __dirname + "/client/views");
-
-// serve static files
-app.use("/static", express.static(__dirname + "/client/public"));
 
 app.listen(PORT, (error) => {
   if (!error)
