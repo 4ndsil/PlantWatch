@@ -14,7 +14,7 @@ router.post("/", async (req, res, next) => {
     maxAge: 900000,
     httpOnly: true
   });
-  res.render("dashboard");  
+  res.redirect("/");  
 });
 
 module.exports = router;
