@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <h6 class="card-subtitle mb-2 text-muted">
+          <i class="bi bi-brightness-high"></i>
+          Light
+        </h6>
+        <h5 class="card-title" id="light-text">--</h5>
+        <h7 class="card-subtitle mb-2 text-muted" id="light-update-text">Updated --:--</h7>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <h6 class="card-subtitle mb-2 text-muted">
+          <i class="bi bi-droplet"></i>
+          Moisture
+        </h6>
+        <h5 class="card-title" id="moisture-text">--</h5>
+        <h7 class="card-subtitle mb-2 text-muted" id="moisture-update-text">Updated --:--</h7>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/mqtt@4.0.1/dist/mqtt.min.js"></script>
+<script>
+  const lightText = document.getElementById("light-text")
+  const moistureText = document.getElementById("moisture-text")
+  const lightUpdateText = document.getElementById("light-update-text")
+  const moistureUpdateText = document.getElementById("moisture-update-text")
+
+  const client = mqtt.connect("ws://192.168.1.51:9001"); // TODO replace with pi ip-adress
+
+  client.subscribe("device1/lux");
+  client.subscribe("device1/moisture");
+  client.on("message", (topic, byteArray) => {
+    const message = String.fromCharCode(...byteArray);
+    if (topic === "device1/lux") {
+      lightText.innerText = `${message} lux`
+      lightUpdateText.innerText = `Updated: ${(new Date()).toLocaleTimeString()}`
+    }
+    if (topic === "device1/moisture") {
+      moistureText.innerText = `${message}%`
+      moistureUpdateText.innerText = `Updated: ${(new Date()).toLocaleTimeString()}`
+    }
+  });
+</script>
