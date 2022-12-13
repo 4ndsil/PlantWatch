@@ -32,19 +32,19 @@
   const lightUpdateText = document.getElementById("light-update-text")
   const moistureUpdateText = document.getElementById("moisture-update-text")
 
-  const client = mqtt.connect("ws://192.168.1.51:9001"); // TODO replace with pi ip-adress
+  const client = mqtt.connect("ws://localhost:9001"); // TODO replace with pi ip-adress
 
   client.subscribe("device1/lux");
   client.subscribe("device1/moisture");
   client.on("message", (topic, byteArray) => {
-    const message = String.fromCharCode(...byteArray);
+    const message = JSON.parse(String.fromCharCode(...byteArray));
     if (topic === "device1/lux") {
-      lightText.innerText = `${message} lux`
-      lightUpdateText.innerText = `Updated: ${(new Date()).toLocaleTimeString()}`
+      lightText.innerText = `${message.lux} lux`
+      lightUpdateText.innerText = `Updated: ${message.Date}`
     }
     if (topic === "device1/moisture") {
-      moistureText.innerText = `${message}%`
-      moistureUpdateText.innerText = `Updated: ${(new Date()).toLocaleTimeString()}`
+      moistureText.innerText = `${message.moisture}%`
+      moistureUpdateText.innerText = `Updated: ${message.Date}`
     }
   });
 </script>
