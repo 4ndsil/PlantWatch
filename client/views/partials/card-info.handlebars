@@ -8,10 +8,3 @@
     <h7 class="card-subtitle mb-2 text-muted">{{subtitle}}</h7>
   </div>
 </div>
-<script>
-
-  var formData = new FormData();
-  formData.append("apiValue": "Keep moist between watering & Can dry between watering");
-  formData.append("sensorValue": 500);
-  fetch("/insight", formData).then(res => res.json()).then(res => { });
-</script>

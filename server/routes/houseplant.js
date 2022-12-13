@@ -17,6 +17,7 @@ const fields = [
   "Light tolered",
   "Watering",
   "id",
+  "Height at purchase",
 ];
 
 // gets all plants

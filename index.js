@@ -12,6 +12,9 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// serve static files
+app.use("/static", express.static(__dirname + "/client/public"));
+
 // api routes
 app.use("/api/db", require("./server/routes/db"));
 app.use("/api/houseplant", require("./server/routes/houseplant"));
@@ -21,11 +24,6 @@ app.use("/setup", require("./server/routes/setup"));
 
 // cookie validator
 app.use(cookieValidator);
-
-// moisture validator
-
-// insight data route
-app.use("/insight", require("./server/routes/insight"))
 
 // protocted routes
 app.use("/", require("./server/routes/views"));
@@ -41,9 +39,6 @@ app.engine(
 // set view engine & directory
 app.set("view engine", "handlebars");
 app.set("views", __dirname + "/client/views");
-
-// serve static files
-app.use("/static", express.static(__dirname + "/client/public"));
 
 app.listen(PORT, (error) => {
   if (!error)
