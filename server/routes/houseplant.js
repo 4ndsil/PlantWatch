@@ -36,7 +36,7 @@ router.get("/", (req, res) => {
       res.json(data);
     })
     .catch((error) => {
-      console.error(error);
+      console.error(error.message);    
       res.sendStatus(500);
     });
 });
