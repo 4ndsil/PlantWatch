@@ -7,20 +7,12 @@
     <div class="card">
         <div class="card-header">
             <h5 class="card-title" style="text-align: center;">
-                Setup a device with a plant
+                Configure device
             </h5>
         </div>
         <div class="card-body">
             <center>
-                <form class="row g-3" id="welcome-form" action="/setup" method="POST">
-                    <div class="mb-3">
-                        <select name="deviceId" id="select-device" name="plantId" class="selectpicker"
-                            data-live-search="true" data-width="75%">
-                            <option value="device1">
-                                device1
-                            </option>
-                        </select>
-                    </div>
+                <form class="row g-3" id="welcome-form" action="#" method="POST">
                     <div class="mb-3">
                         <select id="select-plant" name="plantId" class="selectpicker" title="Loading..."
                             data-live-search="true" data-width="75%" disabled required>
@@ -40,8 +32,10 @@
 <script>
     const plantSelect = document.getElementById("select-plant")
     const deviceInput = document.getElementById("select-device")
+    let plants;
 
     fetch("/api/houseplant/").then(r => r.json()).then(res => {
+        plants = res;
         for (plant of res) {
             let option = $("<option></option>")
             let optionContainer = $("<div></div>")

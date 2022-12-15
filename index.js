@@ -23,7 +23,7 @@ app.use("/api/houseplant", require("./server/routes/houseplant"));
 app.use("/setup", require("./server/routes/setup"));
 
 // cookie validator
-app.use(cookieValidator);
+// app.use(cookieValidator);
 
 // protocted routes
 app.use("/", require("./server/routes/views"));
