@@ -11,15 +11,6 @@ router.get("/dashboard/:id", async (req, res) => {
   }
 });
 
-router.get("/configure/:id", async (req, res) => {
-  let device = await getDevice(req.params.id);
-  if (device) {
-    res.render("welcome", { device: device });
-  } else {
-    res.redirect("/");
-  }
-});
-
 router.get("/", async (req, res) => {
   let devices = await getAllDevices();
   res.render("home", { devices: devices });

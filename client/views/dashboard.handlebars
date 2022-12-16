@@ -15,17 +15,15 @@
 <script src="/static/js/plantInfo.js"></script>
 <script src="/static/js/insight.js"></script>
 <script>
-async function endpoints() {
+  async function endpoints() {
     const deviceId = "{{{device.deviceId}}}"
-    const body = JSON.stringify({deviceId: deviceId})
+    const body = JSON.stringify({ deviceId: deviceId })
 
     const lux = await fetch(`/api/db/lux/${deviceId}`).then(r => r.json())
-    const moisture = await fetch(`/api/db/moisture/${deviceId}`).then(r => r.json())    
+    const moisture = await fetch(`/api/db/moisture/${deviceId}`).then(r => r.json())
     setLuxChart(lux.data)
     setMoistureChart(moisture.data)
-    
-    //const plant = await fetch("/api/houseplant/id").then(res => res.json())
-    //plantInfo(plant)
+
     //moistureReasoning(lux["lux"], plant["Watering"])
     //luxReasoning(moisture["moisture"], plant["Light ideal"])
   }

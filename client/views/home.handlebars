@@ -4,27 +4,22 @@
       Select device
     </h5>
     {{#each devices}}
-      <div class="card" style="width: 25%;">
-        <div class="card-body">
-          <h5 class="card-title" id="current-moisture-level">
-            {{this.name}}
-          </h5>
-          <a
-            class="btn btn-primary"
-            href="/dashboard/{{this.deviceId}}"
-            role="button"
-          >
-            View
-          </a>
-          <a
-            class="btn btn-secondary"
-            href="/configure/{{this.deviceId}}"
-            role="button"
-          >
-            <i class="bi bi-gear"></i>
-          </a>
-        </div>
+    <div class="card" style="width: 25%;">
+      <div class="card-body">
+        <h6 class="card-subtitle mb-2 text-muted">
+          Device: {{this.deviceId}}
+        </h6>
+        <h5 class="card-title" id="current-moisture-level">
+          {{this.plant.info.[Common name]}}
+        </h5>
+        <a class="btn btn-primary" href="/dashboard/{{this.deviceId}}" role="button">
+          View
+        </a>
+        <a class="btn btn-secondary" href="/configure/{{this.deviceId}}" role="button">
+          <i class="bi bi-gear"></i>
+        </a>
       </div>
+    </div>
     {{/each}}
   </center>
 </div>
