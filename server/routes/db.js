@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const router = express.Router();
 
 //db models
-const lux = require('../models/lux')
+const luxModel = require('../models/lux')
 const moisture = require('../models/moisture')
 
 const CONNECTION_STRING = process.env.MONGODB_CONNECTION_STRING;
@@ -11,10 +11,10 @@ const CONNECTION_STRING = process.env.MONGODB_CONNECTION_STRING;
 mongoose.connect(CONNECTION_STRING)
 
 //lux endpoints
-router.get("/lux/", async (req, res) => {
+router.get("/lux/:id", async (req, res) => {
     try {
-        const data = await lux.find({
-            deviceId: req.cookies.deviceId
+        const data = await luxModel.find({
+            deviceId: req.params.id
         })
         res.status(200).json({
             success: true,
@@ -34,10 +34,10 @@ router.post("/lux", async (req, res) => {
         deviceId
     } = req.body
     try {
-        const data = await lux.create({
+        const data = await luxModel.create({
             lux,
             deviceId,
-            Date: Date()
+            date: Date()
         })
         await data.save();
         res.status(201).json({
@@ -53,10 +53,10 @@ router.post("/lux", async (req, res) => {
 });
 
 //moisture endpoints
-router.get("/moisture/", async (req, res) => {
+router.get("/moisture/:id", async (req, res) => {
     try {
         const data = await moisture.find({
-            deviceId: req.cookies.deviceId
+            deviceId: req.params.deviceId
         })
         res.status(200).json({
             success: true,

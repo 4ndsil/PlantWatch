@@ -1,9 +1,14 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const deviceSchema = new mongoose.Schema({
-    id: String,    
-    date: Date,    
-}, { collection: 'device' })
+const deviceSchema = new mongoose.Schema(
+  {
+    deviceId: String,
+    name: String,
+    plant: String,
+    ip: String,
+  },
+  { collection: "device" }
+);
 
 const device = mongoose.model("Device", deviceSchema);
 

@@ -27,12 +27,13 @@
 
 <script src="https://unpkg.com/mqtt@4.0.1/dist/mqtt.min.js"></script>
 <script>
+  const deviceIp = "{{device.ip}}"
   const lightText = document.getElementById("light-text")
   const moistureText = document.getElementById("moisture-text")
   const lightUpdateText = document.getElementById("light-update-text")
   const moistureUpdateText = document.getElementById("moisture-update-text")
 
-  const client = mqtt.connect("ws://localhost:9001"); // TODO replace with pi ip-adress
+  const client = mqtt.connect(`ws://${deviceIp}:9001`); // TODO replace with pi ip-adress
 
   client.subscribe("device1/lux");
   client.subscribe("device1/moisture");

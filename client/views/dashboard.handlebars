@@ -11,7 +11,22 @@
   </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.0.1/dist/chart.umd.min.js"></script>
-<script src="static/js/charts.js"></script>
-<script src="static/js/plantInfo.js"></script>
-<script src="static/js/insight.js"></script>
-<script src="static/js/dashboard.js"></script>
+<script src="/static/js/charts.js"></script>
+<script src="/static/js/plantInfo.js"></script>
+<script src="/static/js/insight.js"></script>
+<script>
+  async function endpoints() {
+    const deviceId = "{{{device.deviceId}}}"
+    const body = JSON.stringify({ deviceId: deviceId })
+
+    const lux = await fetch(`/api/db/lux/${deviceId}`).then(r => r.json())
+    const moisture = await fetch(`/api/db/moisture/${deviceId}`).then(r => r.json())
+    setLuxChart(lux.data)
+    setMoistureChart(moisture.data)
+
+    //moistureReasoning(lux["lux"], plant["Watering"])
+    //luxReasoning(moisture["moisture"], plant["Light ideal"])
+  }
+
+  endpoints()
+</script>

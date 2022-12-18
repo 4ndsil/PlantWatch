@@ -20,12 +20,7 @@ app.use("/api/db", require("./server/routes/db"));
 app.use("/api/houseplant", require("./server/routes/houseplant"));
 
 // public routes
-app.use("/setup", require("./server/routes/setup"));
-
-// cookie validator
-app.use(cookieValidator);
-
-// protocted routes
+app.use("/configure", require("./server/routes/configure"));
 app.use("/", require("./server/routes/views"));
 
 // handlebars engine, set partails directory

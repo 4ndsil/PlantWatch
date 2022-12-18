@@ -3,14 +3,22 @@
     <h6 class="card-subtitle mb-2 text-muted">
       <i class="bi bi-flower2"></i>
       Plant Information
-      <div class="spinner-border spinner-border-sm text-primary" role="status" id="plantinfo-spinner">
-      </div>
     </h6>
     <center>
-      <img id="plantinfo-img" />
+      <img id="plantinfo-img" src={{device.plant.img}} />
     </center>
     <table class="table table-hover">
       <tbody id="plantinfo-table">
+        {{#each device.plant.info}}
+          <tr>
+            <th>
+              {{@key}}
+            </th>
+            <td>
+              {{this}}
+            </td>
+          </tr>
+        {{/each}}
       </tbody>
     </table>
   </div>

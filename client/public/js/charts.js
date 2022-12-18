@@ -15,7 +15,7 @@ let moistureChartElement = document.getElementById("moisture-chart");
 
 async function setLuxChart(data) {
     const lux = data.map(({lux}) => lux)
-    const dates = data.map(({Date}) => Date)
+    const dates = data.map(({date}) => date)
     new Chart(lightChartElement.getContext("2d"), {
         type: "line",
         data: {
@@ -44,7 +44,7 @@ document.getElementById("charts-spinner").remove()
 
 async function setMoistureChart(data) {
     const moisture = data.map(({moisture}) => moisture)
-    const dates = data.map(({Date}) => Date)
+    const dates = data.map(({date}) => date)
     new Chart(moistureChartElement.getContext("2d"), {
         type: "line",
         data: {
