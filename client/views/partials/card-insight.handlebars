@@ -1,18 +1,55 @@
 <div class="card">
     <div class="card-body">
-        <h6 class="card-subtitle mb-2 text-muted">
-            <i class="bi bi-clipboard-data"></i>
-            Insight
-            <div class="spinner-border spinner-border-sm text-primary" role="status" id="plantinfo-spinner">
+        <div style="display:table;width:100%;height:30px">
+            <div style="width: 30%;display:table-cell;">
+                <h6 class="card-subtitle mb-2 text-muted">
+                    <i class="bi bi-clipboard-data"></i>
+                    Insights
+                    <div class="spinner-border spinner-border-sm text-primary" role="status" id="plantinfo-spinner">
+                    </div>
+                </h6>
             </div>
-        </h6>
+            <div style="width: 30%;display:table-cell;text-align:end">
+                <div id="insights-btn-group" class="btn-group" role="group"
+                    aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio01" autocomplete="off" checked />
+                    <label class="btn btn-outline-primary btn-sm insights-toggle-lable" for="btnradio01" value="light">
+                        Light
+                    </label>
+
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio02" autocomplete="off" />
+                    <label class="btn btn-outline-primary btn-sm insights-toggle-lable" for="btnradio02"
+                        value="moisture">
+                        Moisture
+                    </label>
+                </div>
+            </div>
+        </div>
         <table class="table table-hover">
-            <tbody id="moisture-table">
+            <tbody id="lux-table">
 
             </tbody>
-            <tbody id="light-table">
+            <tbody id="moisture-table" style="display:none;">
 
             </tbody>
         </table>
     </div>
 </div>
+
+<script>
+    // create charts
+    let luxTable = document.getElementById("lux-table");
+    let moistureTable = document.getElementById("moisture-table");
+
+    // set up eventlisteners
+    let insightRadioLables = document.getElementsByClassName("insights-toggle-lable");
+    insightRadioLables[0].addEventListener("click", (e) => {
+        luxTable.style.display = "block";
+        moistureTable.style.display = "none";
+    });
+    insightRadioLables[1].addEventListener("click", (e) => {
+        moistureTable.style.display = "block";
+        luxTable.style.display = "none";
+    });
+
+</script>
