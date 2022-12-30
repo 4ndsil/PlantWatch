@@ -56,7 +56,7 @@ router.post("/lux", async (req, res) => {
 router.get("/moisture/:id", async (req, res) => {
     try {
         const data = await moisture.find({
-            deviceId: req.params.deviceId
+            deviceId: req.params.id
         })
         res.status(200).json({
             success: true,

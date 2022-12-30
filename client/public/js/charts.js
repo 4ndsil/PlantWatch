@@ -14,8 +14,12 @@ let lightChartElement = document.getElementById("light-chart");
 let moistureChartElement = document.getElementById("moisture-chart");
 
 async function setLuxChart(data) {
-    const lux = data.map(({lux}) => lux)
-    const dates = data.map(({date}) => date)
+    const lux = data.map(({
+        lux
+    }) => lux)
+    const dates = data.map(({
+        date
+    }) => date)
     new Chart(lightChartElement.getContext("2d"), {
         type: "line",
         data: {
@@ -28,9 +32,21 @@ async function setLuxChart(data) {
                 BorderRadius: 10,
                 pointStyle: "circle",
                 pointRadius: 3,
-            },],
+            }, ],
         },
         options: {
+            scales: {
+                x: {
+                    ticks: {
+                        autoSkip: true,
+                        maxTicksLimit: 10.1,
+                        callback: function (value, index, ticks) {
+                            return new Date(dates[index]).toLocaleString();
+                        }
+                    },
+                    position: "bottom",
+                },
+            },
             plugins: {
                 legend: {
                     align: "end",
@@ -43,8 +59,12 @@ async function setLuxChart(data) {
 document.getElementById("charts-spinner").remove()
 
 async function setMoistureChart(data) {
-    const moisture = data.map(({moisture}) => moisture)
-    const dates = data.map(({date}) => date)
+    const moisture = data.map(({
+        moisture
+    }) => moisture)
+    const dates = data.map(({
+        date
+    }) => date)
     new Chart(moistureChartElement.getContext("2d"), {
         type: "line",
         data: {
@@ -61,9 +81,21 @@ async function setMoistureChart(data) {
                 },
                 pointStyle: "circle",
                 pointRadius: 3,
-            },],
+            }, ],
         },
         options: {
+            scales: {
+                x: {
+                    ticks: {
+                        autoSkip: true,
+                        maxTicksLimit: 10.1,
+                        callback: function (value, index, ticks) {
+                            return new Date(dates[index]).toLocaleString();
+                        }
+                    },
+                    position: "bottom",
+                },
+            },
             plugins: {
                 legend: {
                     align: "end",
