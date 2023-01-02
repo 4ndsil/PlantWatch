@@ -66,6 +66,7 @@ async function moistureReasoning(sensorValue, apiValue) {
         th.innerText = key
         td.innerHTML = value
     }
+    if ((spinner = document.getElementById("plantinfo-spinner"))) spinner.remove();
 }
 
 async function luxReasoning(sensorValue, apiValue) {
@@ -124,6 +125,5 @@ async function luxReasoning(sensorValue, apiValue) {
         th.innerText = key
         td.innerHTML = value
     }
+    if ((spinner = document.getElementById("plantinfo-spinner"))) spinner.remove();
 }
-
-document.getElementById("plantinfo-spinner").remove()

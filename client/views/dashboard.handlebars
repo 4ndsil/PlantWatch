@@ -4,13 +4,13 @@
       {{> card-sensor }}
       {{> card-plantinfo }}
     </div>
-    <div class="col-7">
+    <div class="col-8">
       {{> card-charts }}
       {{> card-insight }}
     </div>
   </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.0.1/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.1.1/dist/chart.umd.min.js"></script>
 <script src="/static/js/charts.js"></script>
 <script src="/static/js/plantInfo.js"></script>
 <script src="/static/js/insight.js"></script>
@@ -23,9 +23,6 @@
     const moisture = await fetch(`/api/db/moisture/${deviceId}`).then(r => r.json())
     setLuxChart(lux.data)
     setMoistureChart(moisture.data)
-
-    //moistureReasoning(lux["lux"], plant["Watering"])
-    //luxReasoning(moisture["moisture"], plant["Light ideal"])
   }
 
   endpoints()

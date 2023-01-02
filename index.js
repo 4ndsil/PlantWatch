@@ -1,14 +1,11 @@
 require("dotenv").config();
 const express = require("express");
 const { engine } = require("express-handlebars");
-const cookieParser = require("cookie-parser");
-const cookieValidator = require("./server/middleware/cookieValidator");
 
 const app = express();
 const PORT = 3000;
 
-//cookie config
-app.use(cookieParser());
+// middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -38,7 +35,7 @@ app.set("views", __dirname + "/client/views");
 app.listen(PORT, (error) => {
   if (!error)
     console.log(
-      "Server is Successfully Running, and App is listening on port " + PORT
+      "Server is running. App listening on port " + PORT
     );
-  else console.log("Error occurred, server can't start", error);
+  else console.log("Failed to start server", error);
 });
