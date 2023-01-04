@@ -2,8 +2,6 @@
 let lightChartElement = document.getElementById("light-chart");
 let moistureChartElement = document.getElementById("moisture-chart");
 
-const LABEL_LENGTH = " ".repeat(28);
-
 // set up eventlisteners
 let radioLables = document.getElementsByClassName("chart-toggle-lable");
 radioLables[0].addEventListener("click", (e) => {
