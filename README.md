@@ -1,6 +1,6 @@
 # PlantWatch
 
-Plantwatch is a plant monitoring system developed by Andreas Siljefors and Lucas Villarroel. The purpose of the application is to help people keeping an eye on their houseplants in regards to watering the light exposure.
+Plantwatch is a plant monitoring system developed by Andreas Siljefors and Lucas Villarroel. The purpose of the application is to help people keeping an eye on their houseplants in regards to watering and light exposure.
 
 ## Project structure
 The application is written in javascript, html and some css together with handlebars templating engine. 
