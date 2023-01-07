@@ -39,5 +39,5 @@ The application runs on localhost:3000.
 
 
 ## Demo
-This link shows a demo of the application in action.
+This link shows a demo of the application in action:
 https://www.youtube.com/watch?v=6CMeBCmfPD0
