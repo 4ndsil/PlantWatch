@@ -36,27 +36,8 @@ router.get("/", (req, res) => {
       res.json(data);
     })
     .catch((error) => {
-      console.error(error.message);    
+      console.error(error.message);
       res.sendStatus(500);
-    });
-});
-
-// get plant by id
-router.get("/id/", (req, res) => {
-  axios
-    .get(`${BASE_URL}${req.cookies.plantId}`, { headers: HEADERS })
-    .then((response) => {
-      const data = Object.keys(response.data)
-        .filter((key) => fields.includes(key))
-        .reduce((obj, key) => {
-          obj[key] = response.data[key];
-          return obj;
-        }, {});
-      res.json(data);
-    })
-    .catch((error) => {
-      console.error(error);
-      res.sendStatus(404);
     });
 });
 
