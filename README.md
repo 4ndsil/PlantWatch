@@ -21,7 +21,7 @@ It is composed of an express server wich can be found in `index.js` and the `ser
 
 
 ## Setup
-To get started with PlantWatch first run the command `npm install` in the root directory to install the required packages.
+To get started with PlantWatch first clone the repository and run the command `npm install` in the root directory to install the required packages.
 
 The application needs some environmental variables to function correctly. For this we are using the `dotenv` library. Create a file called `.env` in the root directory and add the following environmental variables:
 
@@ -29,5 +29,10 @@ The application needs some environmental variables to function correctly. For th
 PLANT_API_KEY="<Houseplant API key>"
 MONGODB_CONNECTION_STRING="<MongoDB connection string>"
 ```
+## Running the application
 
-Then run `npm run dev` to start the application located on localhost:3000.
+The entry file is `index.js`, to run the application use `node index.js`. 
+
+If you run in developer mode with nodemon (restarts server on file changes) use `npm run dev`.
+
+The application runs on localhost:3000.
