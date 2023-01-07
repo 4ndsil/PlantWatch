@@ -1,10 +1,33 @@
 # PlantWatch
 
-PlantWatch is a plant monitoring system developed by Andreas Siljefors and Lucas Villarroel. The purpose of the application is to help people keeping an eye on their houseplants in regards to watering and light exposure.
+PlantWatch is a plant monitoring system developed by Andreas Siljefors and Lucas Villarroel. The purpose of the application is to help people monitor their houseplants in regards to watering and light exposure.
 
 ## Project structure
-The application is written in javascript, html and some css together with handlebars templating engine. 
-It is composed of a express server wich can be found in index.js and the /server directory, and a client that is located in the /public directory.
+The application is written in JavaScript, HTML and CSS together with handlebars templating engine. 
+It is composed of an express server wich can be found in `index.js` and the `server` directory, and a client that is located in the `client` directory.
+
+### server/
+
+- `models/`: contains database models.
+- `routes/`: contains all endpoints.
+- `services/`: contains helper functions.
+
+### client/
+
+- `public/`: static files served to the client by the server, either javascript or css files.
+- `views/`: contains the views which are compiled by the server and rendered for the client. Also contains two subdirectories:
+  - `layouts/`: contains the layouts used by the templating engine.
+  - `partials/`: contains partial views.
+
 
 ## Setup
-To get started with PlantWatch first run the command `npm install` in the root directory to get all the required packages. Then run `npm run dev` to start the application located on localhost:3000.
+To get started with PlantWatch first run the command `npm install` in the root directory to install the required packages.
+
+The application needs some environmental variables to function correctly. For this we are using the `dotenv` library. Create a file called `.env` in the root directory and add the following environmental variables:
+
+```
+PLANT_API_KEY="<Houseplant API key>"
+MONGODB_CONNECTION_STRING="<MongoDB connection string>"
+```
+
+Then run `npm run dev` to start the application located on localhost:3000.
