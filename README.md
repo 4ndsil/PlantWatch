@@ -36,3 +36,8 @@ The entry file is `index.js`, to run the application use `node index.js`.
 If you run in developer mode with nodemon (restarts server on file changes) use `npm run dev`.
 
 The application runs on localhost:3000.
+
+
+## Demo
+The link below shows a demo of the application in action.
+https://www.youtube.com/watch?v=6CMeBCmfPD0
